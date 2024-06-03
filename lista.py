@@ -23,3 +23,22 @@ carros = ["gol", "polo", "jeta"]
 
 for indice,carro in enumerate(carros):
     print(f"{indice + 1} = {carro}")
+
+#compreensão de lista 
+
+numeros = [1, 23, 45, 78, 89, 4, 8]
+
+pares = []
+
+for numero in numeros:
+    if numero % 2 == 0:
+        pares.append(numero)
+        print(pares)
+
+numeros = [1, 23, 45, 78, 89, 4, 8]
+pares = [numero for numero in numeros if numero % 2 == 0]
+print(pares)
+
+numeros = [1, 23, 45, 78, 89, 4, 8]
+quadrado = [numero ** 2 for numero in numeros]
+print(quadrado)
