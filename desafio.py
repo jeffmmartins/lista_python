@@ -1,6 +1,5 @@
-def menu(): 
-    menu = """
-
+ 
+menu = """
     [d] Depositar
     [s] Sacar
     [e] Extrato
@@ -9,7 +8,7 @@ def menu():
     [nu] Novo usuario
     [q] Sair 
     => """
-    return input(menu)
+
 
 saldo = 0
 limite = 500
@@ -26,6 +25,7 @@ def deposito(valor, saldo, extrato, /):
     return saldo, extrato 
 
 def sacar(*, valor, saldo, limite, numero_saques,limite_saques):
+
     excedeu_saldo = valor > saldo
 
     excedeu_limite = valor > limite
@@ -41,6 +41,13 @@ def sacar(*, valor, saldo, limite, numero_saques,limite_saques):
     elif excedeu_saques:
             print("Operação falhou! Número máximo de saques excedido.") 
 
+def mostrar_extrato(saldo, /, *, extrato ):
+    print("\n================ EXTRATO ================")
+    print("Não foram realizadas movimentações." if not extrato else extrato)
+    print(f"\nSaldo: R$ {saldo:.2f}")
+    print("==========================================")
+    return saldo, extrato
+     
 while True:
 
     opcao = input(menu)
@@ -53,21 +60,17 @@ while True:
         valor = float(input("Informe o valor do saque: "))
     
         saldo, extrato = sacar(
-         saldo=saldo
-         valor=valor
-         extrato=extrato
-         limite=limite
-         numero_saques=numero_saques
-         limite_saques=LIMITE_SAQUES
+         saldo=saldo,
+         valor=valor,
+         extrato=extrato,
+         limite=limite,
+         numero_saques=numero_saques,
+         limite_saques=LIMITE_SAQUES,
     )
 
     
     elif opcao == "e":
-        print("\n================ EXTRATO ================")
-        print("Não foram realizadas movimentações." if not extrato else extrato)
-        print(f"\nSaldo: R$ {saldo:.2f}")
-        print("==========================================")
-
+        saldo, extrato = mostrar_extrato(saldo, extrato=extrato)
     elif opcao == "q":
         break
 
