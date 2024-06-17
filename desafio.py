@@ -16,7 +16,8 @@ limite = 500
 extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
-usuarios = 
+usuarios = []
+contas = []
 
 def deposito(valor, saldo, extrato, /):
     if valor > 0:
@@ -64,7 +65,7 @@ def novo_usuario(usuarios):
     usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
     print("Cadastrado com sucesso")
 
-def filtro_usuario(cpf,usuarios)
+def filtro_usuario(cpf,usuarios):
      filtro_novos_usuarios = [usuario for usuario in usuarios  if usuarios["cpf"] == cpf ]
      return filtro_novos_usuarios[0] if filtro_novos_usuarios else None
 
@@ -76,6 +77,12 @@ def criar_conta(agencia, numero_conta, usuarios):
           print("\nConta criada")
           return {"agencia": agencia, "numero_conta": numero_conta, "usuarios": usuario}
      
+def listar_contas(contas):
+     for conta in contas:
+          informacao = f""" Agencia: {conta["agencia"]}\n
+                        Conta Corrente: {conta[numero_conta]}\n
+                        Nome: {conta["usuario"]} """
+          print(informacao)
 
 while True:
 
@@ -103,7 +110,14 @@ while True:
     elif opcao == "nu":
          novo_usuario(usuarios)
     elif opcao == "nc":
-         criar_conta(AGENCIA, numero_conta, usuarios)
+         numero_conta = len(contas) + 1
+         conta = criar_conta(AGENCIA, numero_conta, usuarios)
+         
+         if conta:
+              contas.append(conta)
+
+    elif opcao == "lc":
+         listar_contas(contas)
     elif opcao == "q":
         break
 
