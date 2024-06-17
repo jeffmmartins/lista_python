@@ -1,11 +1,15 @@
-menu = """
+def menu(): 
+    menu = """
 
-[d] Depositar
-[s] Sacar
-[e] Extrato
-[q] Sair
-
-=> """
+    [d] Depositar
+    [s] Sacar
+    [e] Extrato
+    [nc] Nova conta
+    [lc] Listar conta 
+    [nu] Novo usuario
+    [q] Sair 
+    => """
+    return input(menu)
 
 saldo = 0
 limite = 500
