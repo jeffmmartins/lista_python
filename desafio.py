@@ -66,22 +66,23 @@ def novo_usuario(usuarios):
     print("Cadastrado com sucesso")
 
 def filtro_usuario(cpf,usuarios):
-     filtro_novos_usuarios = [usuario for usuario in usuarios  if usuarios["cpf"] == cpf ]
+     filtro_novos_usuarios = [usuario for usuario in usuarios  if usuario["cpf"] == cpf ]
      return filtro_novos_usuarios[0] if filtro_novos_usuarios else None
 
 def criar_conta(agencia, numero_conta, usuarios):
      cpf = int(input("Digite o cpf: "))
      usuario = filtro_usuario(cpf, usuarios)
      
-     if usuarios: 
+     if usuario: 
           print("\nConta criada")
           return {"agencia": agencia, "numero_conta": numero_conta, "usuarios": usuario}
+     print("Usuario nao Cadastrado")
      
 def listar_contas(contas):
      for conta in contas:
           informacao = f""" Agencia: {conta["agencia"]}\n
-                        Conta Corrente: {conta[numero_conta]}\n
-                        Nome: {conta["usuario"]} """
+                        Conta Corrente: {conta["numero_conta"]}\n
+                        Nome: {conta["usuarios"]} """
           print(informacao)
 
 while True:
