@@ -1,8 +1,9 @@
-def saque(*, valor_saque, excedeu_limite):
-    if valor_saque > excedeu_limite :
+def saque(*, excedeu_limite):
+    saque  = float(input("digite um valor: "))
+    if saque < excedeu_limite :
         print("Saque Realizado com sucesso ")
-    elif valor_saque < excedeu_limite:
-        print("execdeu o limite")
     else:
-        print("fechar programa")
-saque(valor_saque=300, excedeu_limite=150)
+        print("voce excedeu o limite")
+    
+saque(excedeu_limite=400)
+
