@@ -10,6 +10,7 @@ menu = """
     => """
 
 
+AGENCIA = "0001"
 saldo = 0
 limite = 500
 extrato = ""
@@ -50,16 +51,32 @@ def mostrar_extrato(saldo, /, *, extrato ):
     return saldo, extrato
 
 def novo_usuario(usuarios):
-     cpf = int(input("difgite seu cpf:"))
-     usuario = filtro_usuario(cpf, usuarios)
+    cpf = int(input("difgite seu cpf:"))
+    usuario = filtro_usuario(cpf, usuarios)
      
-     if usuario:
+    if usuario:
           print("\nUsuario já cadastrado")
+          return
+    nome = input("Digite seu nome completo: ")
+    data_nascimento = input("Informe a data de Nascimento (dd-mm-aaaa): ")
+    endereco = input("Digite o endereco (logradouro, nro - bairro - cidade/estado): ")
+
+    usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
+    print("Cadastrado com sucesso")
 
 def filtro_usuario(cpf,usuarios)
      filtro_novos_usuarios = [usuario for usuario in usuarios  if usuarios["cpf"] == cpf ]
      return filtro_novos_usuarios[0] if filtro_novos_usuarios else None
+
+def criar_conta(agencia, numero_conta, usuarios):
+     cpf = int(input("Digite o cpf: "))
+     usuario = filtro_usuario(cpf, usuarios)
      
+     if usuarios: 
+          print("\nConta criada")
+          return {"agencia": agencia, "numero_conta": numero_conta, "usuarios": usuario}
+     
+
 while True:
 
     opcao = input(menu)
@@ -85,6 +102,8 @@ while True:
         saldo, extrato = mostrar_extrato(saldo, extrato=extrato)
     elif opcao == "nu":
          novo_usuario(usuarios)
+    elif opcao == "nc":
+         criar_conta(AGENCIA, numero_conta, usuarios)
     elif opcao == "q":
         break
 
