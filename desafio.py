@@ -15,6 +15,7 @@ limite = 500
 extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
+usuarios = 
 
 def deposito(valor, saldo, extrato, /):
     if valor > 0:
@@ -47,6 +48,17 @@ def mostrar_extrato(saldo, /, *, extrato ):
     print(f"\nSaldo: R$ {saldo:.2f}")
     print("==========================================")
     return saldo, extrato
+
+def novo_usuario(usuarios):
+     cpf = int(input("difgite seu cpf:"))
+     usuario = filtro_usuario(cpf, usuarios)
+     
+     if usuario:
+          print("\nUsuario já cadastrado")
+
+def filtro_usuario(cpf,usuarios)
+     filtro_novos_usuarios = [usuario for usuario in usuarios  if usuarios["cpf"] == cpf ]
+     return filtro_novos_usuarios[0] if filtro_novos_usuarios else None
      
 while True:
 
@@ -71,6 +83,8 @@ while True:
     
     elif opcao == "e":
         saldo, extrato = mostrar_extrato(saldo, extrato=extrato)
+    elif opcao == "nu":
+         novo_usuario(usuarios)
     elif opcao == "q":
         break
 
